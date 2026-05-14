@@ -97,26 +97,23 @@
         </div>
     </section>
 
-    <!-- RSVP SECTION -->
-    <section class="section glass-card reveal" id="rsvp">
-        <h2>Kindly RSVP</h2>
-        <form class="rsvp-form" id="rsvpForm">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
-            <select name="attendance" required>
-                <option value="" disabled selected>Will you attend?</option>
-                <option value="yes">Yes, I will attend</option>
-                <option value="no">Sorry, I can’t make it</option>
-            </select>
-            <textarea name="message" placeholder="Your Message (optional)" rows="3"></textarea>
-            <button type="submit" class="btn">Confirm RSVP</button>
-        </form>
-    </section>
+    <!-- CALENDAR BUTTON -->
+    <button class="calendar-btn" id="calendarBtn">
+        <span>Mark Your Calendar</span>
+    </button>
 
-    <!-- FOOTER BLESSING -->
-    <footer class="footer-save">
-        <h2>Save The Date</h2>
-    </footer>
+    <!-- CALENDAR MENU -->
+    <div class="calendar-menu" id="calendarMenu">
+        <a href="#" class="calendar-option" id="googleCalendar">
+            <span>Google Calendar</span>
+        </a>
+        <a href="#" class="calendar-option" id="appleCalendar">
+            <span>Apple Calendar</span>
+        </a>
+        <a href="#" class="calendar-option" id="outlookCalendar">
+            <span>Outlook Calendar</span>
+        </a>
+    </div>
 
     <!-- Scripts -->
     <script>
@@ -274,15 +271,64 @@
             });
         });
 
-        // RSVP handling (client‑side mock)
-        const rsvpForm = document.getElementById('rsvpForm');
-        rsvpForm.addEventListener('submit', e => {
-            e.preventDefault();
-            const name = rsvpForm.name.value.trim();
-            const attendance = rsvpForm.attendance.value;
-            alert(`Thank you, ${name}! Your RSVP (${attendance}) has been received.`);
-            rsvpForm.reset();
+        // Calendar functionality
+        const calendarBtn = document.getElementById('calendarBtn');
+        const calendarMenu = document.getElementById('calendarMenu');
+        const googleCalendar = document.getElementById('googleCalendar');
+        const appleCalendar = document.getElementById('appleCalendar');
+        const outlookCalendar = document.getElementById('outlookCalendar');
+
+        const weddingDetails = {
+            title: 'Nissin & Anand Wedding',
+            date: '20260713',
+            time: '103000',
+            endTime: '123000',
+            location: 'St. Mary\'s Forane Church, Thrissur',
+            description: 'Wedding ceremony of Nissin Mary Binu & Alex Joseph',
+            timezone: 'Asia/Kolkata'
+        };
+
+        // Toggle calendar menu
+        calendarBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            calendarMenu.classList.toggle('active');
         });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', () => {
+            calendarMenu.classList.remove('active');
+        });
+
+        // Google Calendar
+        googleCalendar.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(weddingDetails.title)}&dates=${weddingDetails.date}T${weddingDetails.time}/${weddingDetails.date}T${weddingDetails.endTime}&location=${encodeURIComponent(weddingDetails.location)}&details=${encodeURIComponent(weddingDetails.description)}&ctz=${weddingDetails.timezone}`;
+            window.open(url, '_blank');
+            calendarMenu.classList.remove('active');
+        });
+
+        // Apple Calendar (iCal format)
+        appleCalendar.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ical = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Wedding Calendar//EN\nBEGIN:VEVENT\nDTSTART:20260713T103000Z\nDTEND:20260713T123000Z\nSUMMARY:${weddingDetails.title}\nLOCATION:${weddingDetails.location}\nDESCRIPTION:${weddingDetails.description}\nEND:VEVENT\nEND:VCALENDAR`;
+            const blob = new Blob([ical], { type: 'text/calendar' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'wedding.ics';
+            link.click();
+            URL.revokeObjectURL(url);
+            calendarMenu.classList.remove('active');
+        });
+
+        // Outlook Calendar
+        outlookCalendar.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(weddingDetails.title)}&startdt=2026-07-13T10:30:00&enddt=2026-07-13T12:30:00&location=${encodeURIComponent(weddingDetails.location)}&body=${encodeURIComponent(weddingDetails.description)}`;
+            window.open(url, '_blank');
+            calendarMenu.classList.remove('active');
+        });
+
     </script>
 </body>
 </html>
