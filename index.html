@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nissin & Alex – Kerala Christian Wedding</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loader"><div class="spinner"></div></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://cdn.pixabay.com/vimeo/808038244/pexels-1816674.mp4?width=1280&hash=6bc8c83c2a282c2ace2c409550950709fb19d5578a79c2b4e9c833a30d58bd9b" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+        <div class="hero-content glass-card reveal">
+            <p class="tag">Together With Their Families</p>
+            <h1>Nissin <span>&</span> Anand</h1>
+        <p class="date">Monday, 13 July 2026 10:00 AM</p>
+            <a href="#invite" class="btn">View Invitation</a>
+        </div>
+    </section>
+
+    <!-- INVITATION MESSAGE -->
+    <section class="section glass-card reveal" id="invite">
+        <h2>The Wedding Invitation</h2>
+        <p>With the blessings of Almighty God, we cordially invite you to celebrate the wedding ceremony of Nissin Mary Binu & Alex Joseph.</p>
+        <div class="couple">
+            <div class="person">
+                <h3>Nissin Mary Binu</h3>
+                <p> Daughter of<br/>Mrs. Leena Binu & Mr. Binu P Abraham<br/>Address: Pulikkottil House, St. Grigorious Road, Pazhanji, Thrissur</p>
+            </div>
+            <div class="amp">&</div>
+            <div class="person">
+                <h3>Anand David</h3>
+                <p>S/o Mrs. Anitha David & Mr. David Vincent<br/>Address: Puthoor House, Kurumala, Chelakkara, Thrissur</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN TIMER -->
+    <section class="section reveal" id="countdown">
+        <h2>Counting The Days</h2>
+        <div class="countdown glass-card">
+            <div>
+                <span id="days">00</span>
+                <p>Days</p>
+            </div>
+            <div>
+                <span id="hours">00</span>
+                <p>Hours</p>
+            </div>
+            <div>
+                <span id="minutes">00</span>
+                <p>Minutes</p>
+            </div>
+            <div>
+                <span id="seconds">00</span>
+                <p>Seconds</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENT DETAILS -->
+    <section class="section glass-card reveal" id="event">
+        <h2>Wedding Ceremony</h2>
+        <div class="event-grid">
+            <div class="event-card">
+                <h3>Holy Matrimony</h3>
+                <p>St. Mary's Forane Church</p>
+                <p>10:30 AM</p>
+            </div>
+            <div class="event-card">
+                <h3>Wedding Reception</h3>
+                <p>Crown Palace Convention Center</p>
+                <p>12:30 PM onwards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="section reveal" id="gallery">
+        <h2>Moments</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200" alt="Gallery Image 1" />
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200" alt="Gallery Image 2" />
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" alt="Gallery Image 3" />
+            <img src="https://images.unsplash.com/photo-1525258946800-98cfd641d0de?q=80&w=1200" alt="Gallery Image 4" />
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="section glass-card reveal" id="rsvp">
+        <h2>Kindly RSVP</h2>
+        <form class="rsvp-form" id="rsvpForm">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <select name="attendance" required>
+                <option value="" disabled selected>Will you attend?</option>
+                <option value="yes">Yes, I will attend</option>
+                <option value="no">Sorry, I can’t make it</option>
+            </select>
+            <textarea name="message" placeholder="Your Message (optional)" rows="3"></textarea>
+            <button type="submit" class="btn">Confirm RSVP</button>
+        </form>
+    </section>
+
+    <!-- FOOTER BLESSING -->
+    <footer class="footer-save">
+        <h2>Save The Date</h2>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Loading overlay removal
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('fade-out');
+            setTimeout(() => loader.remove(), 800);
+        });
+
+        // Romantic Heart Particle System
+        const canvas = document.createElement('canvas');
+        canvas.className = 'particles-canvas';
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let hearts = [];
+        const heartColors = ['#e7c78a', '#f4c2c2', '#ffb6c1', '#dc143c', '#f5f5dc'];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            hearts = [];
+            for (let i = 0; i < 60; i++) {
+                hearts.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 25 + 8,
+                    speed: Math.random() * 1.5 + 0.3,
+                    drift: (Math.random() - 0.5) * 0.8,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.03,
+                    color: heartColors[Math.floor(Math.random() * heartColors.length)],
+                    opacity: Math.random() * 0.7 + 0.3,
+                    depth: Math.random() * 0.6 + 0.4,
+                    type: Math.floor(Math.random() * 4) // 0: filled, 1: outlined, 2: glowing, 3: sparkle
+                });
+            }
+        }
+
+        function drawHeart(x, y, size, rotation, color, opacity, type) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            ctx.globalAlpha = opacity;
+
+            const topCurveHeight = size * 0.3;
+
+            ctx.beginPath();
+            ctx.moveTo(0, topCurveHeight);
+
+            // Left curve
+            ctx.bezierCurveTo(-size * 0.5, topCurveHeight, -size * 0.5, -size * 0.3, 0, -size * 0.1);
+
+            // Right curve
+            ctx.bezierCurveTo(size * 0.5, -size * 0.3, size * 0.5, topCurveHeight, 0, topCurveHeight);
+
+            // Bottom left curve
+            ctx.bezierCurveTo(-size * 0.3, topCurveHeight * 0.8, -size * 0.4, size * 0.4, 0, size * 0.6);
+
+            // Bottom right curve
+            ctx.bezierCurveTo(size * 0.4, size * 0.4, size * 0.3, topCurveHeight * 0.8, 0, topCurveHeight);
+
+            ctx.closePath();
+
+            if (type === 0 || type === 2) { // Filled or glowing
+                ctx.fillStyle = color;
+                if (type === 2) {
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 20;
+                } else {
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 10;
+                }
+                ctx.fill();
+            }
+
+            if (type === 1 || type === 3) { // Outlined or sparkle
+                ctx.strokeStyle = color;
+                ctx.lineWidth = type === 3 ? 2 : 1.5;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 8;
+                ctx.stroke();
+            }
+
+            // Add sparkle effects for type 3
+            if (type === 3 || Math.random() > 0.9) {
+                ctx.fillStyle = '#ffffff';
+                ctx.globalAlpha = 0.95;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#ffffff';
+
+                // Multiple sparkles
+                const sparkleCount = Math.floor(Math.random() * 3) + 1;
+                for (let i = 0; i < sparkleCount; i++) {
+                    const sparkleX = (Math.random() - 0.5) * size * 0.8;
+                    const sparkleY = (Math.random() - 0.5) * size * 0.8;
+                    ctx.beginPath();
+                    ctx.arc(sparkleX, sparkleY, Math.random() * 2 + 1, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            ctx.restore();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            hearts.forEach(heart => {
+                heart.y += heart.speed * heart.depth;
+                heart.x += heart.drift;
+                heart.rotation += heart.rotationSpeed;
+
+                if (heart.y > canvas.height + 50) {
+                    heart.y = -50;
+                    heart.x = Math.random() * canvas.width;
+                }
+
+                if (heart.x < -50) heart.x = canvas.width + 50;
+                if (heart.x > canvas.width + 50) heart.x = -50;
+
+                drawHeart(heart.x, heart.y, heart.size, heart.rotation, heart.color, heart.opacity, heart.type);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        animate();
+
+        // Countdown timer
+        const weddingDate = new Date('July 13, 2026 10:00:00').getTime();
+        setInterval(() => {
+            const now = Date.now();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }, 1000);
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        });
+
+        // RSVP handling (client‑side mock)
+        const rsvpForm = document.getElementById('rsvpForm');
+        rsvpForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const name = rsvpForm.name.value.trim();
+            const attendance = rsvpForm.attendance.value;
+            alert(`Thank you, ${name}! Your RSVP (${attendance}) has been received.`);
+            rsvpForm.reset();
+        });
+    </script>
+</body>
+</html>
